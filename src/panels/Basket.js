@@ -147,8 +147,12 @@ const Basket = ({ match: { params: { areaId, itemId }}, foodAreas, order }) => {
         </div>
       </div>
       <footer className="Place__footer">
-        <Link to={`/order/${area.id}/${item.id}`} className={(products.length > 0) ? "Place__order": "Place__order isDisabled"}>
-          Оплатить {price}
+        <Link onClick={(evt) => {
+          if (price === '0') {
+            evt.preventDefault();
+          }
+        }} to={`/basket/${area.id}/${item.id}`} className="Place__order">
+          Оформить заказ ({price})
         </Link>
       </footer>
     </div>
